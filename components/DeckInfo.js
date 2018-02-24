@@ -12,15 +12,25 @@ import { baseSize, darkGray, phi } from '../utils/constants'
 /**
  * Functional Component
  */
-// @TODO make this a conditional component based on the existence of handlePress.
-const DeckInfo = ({ deckKey, title, size, handlePress }) => (
-  <TouchableHighlight style={styles.deckInfo} onPress={() => handlePress(deckKey)}>
-    <View>
-      <Text style={styles.deckInfoTitle}>{title}</Text>
-      <Text style={styles.deckInfoSize}>{size} card{size !== 1 ? 's' : ''}</Text>
-    </View>
-  </TouchableHighlight>
-)
+const DeckInfo = ({ deckKey, title, size, handlePress }) => {
+  if (handlePress === undefined) {
+    return (
+      <View style={styles.deckInfo}>
+        <Text style={styles.deckInfoTitle}>{title}</Text>
+        <Text style={styles.deckInfoSize}>{size} card{size !== 1 ? 's' : ''}</Text>
+      </View>
+    )
+  }
+     
+  return (
+    <TouchableHighlight style={styles.deckInfo} onPress={() => handlePress(deckKey)}>
+      <View>
+        <Text style={styles.deckInfoTitle}>{title}</Text>
+        <Text style={styles.deckInfoSize}>{size} card{size !== 1 ? 's' : ''}</Text>
+      </View>
+    </TouchableHighlight>
+  )
+}
 
 /**
  * Styles

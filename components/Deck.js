@@ -54,7 +54,7 @@ class Deck extends Component {
 
     return (
       <View>
-        <DeckInfo title={title} size={cards.length} handlePress={() => {}} />
+        <DeckInfo title={title} size={cards.length} />
         <TouchableHighlight style={styles.addCardButton}>
           <Text>Add Card</Text>
         </TouchableHighlight>
