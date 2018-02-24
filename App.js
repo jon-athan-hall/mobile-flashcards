@@ -2,9 +2,14 @@
  * React Native
  */
 import React, { Component }             from 'react'
-import { View }                         from 'react-native'
+import { View, StatusBar }              from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import { FontAwesome }                  from '@expo/vector-icons'
+
+/**
+ * Expo
+ */
+import { Constants }   from 'expo'
+import { FontAwesome } from '@expo/vector-icons'
 
 /**
  * Utils
@@ -17,6 +22,12 @@ import { white, darkGray }              from './utils/colors'
 import DeckList from './components/DeckList'
 import DeckForm from './components/DeckForm'
 import Quiz     from './components/Quiz'
+
+const AppStatusBar = ({ backgroundColor, ...props }) => (
+  <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+    <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+  </View>
+)
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -65,6 +76,7 @@ class App extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        <AppStatusBar backgroundColor={darkGray} barStyle='light-content' />
         <Navigator />
       </View>
     )
