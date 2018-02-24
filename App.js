@@ -1,23 +1,71 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/**
+ * React Native
+ */
+import React, { Component }             from 'react'
+import { View }                         from 'react-native'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import { FontAwesome }                  from '@expo/vector-icons'
 
-export default class App extends React.Component {
+/**
+ * Utils
+ */
+import { white, darkGray }              from './utils/colors'
+
+/**
+ * Components
+ */
+import DeckList from './components/DeckList'
+import DeckForm from './components/DeckForm'
+import Quiz     from './components/Quiz'
+
+const Tabs = TabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'My Decks',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='th-large' size={24} color={tintColor} />
+    }
+  },
+  DeckForm: {
+    screen: DeckForm,
+    navigationOptions: {
+      tabBarLabel: 'New Deck',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus' size={24} color={tintColor} />
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      tabBarLabel: 'Quiz Me',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='question' size={24} color={tintColor} />
+    }
+  }
+}, {
+  navigationOptions: {
+    header: null
+  },
+  tabBarOptions: {
+    activeTintColor: darkGray,
+    style: {
+      backgroundColor: white
+    }
+  }
+})
+
+const Navigator = StackNavigator({
+  Home: {
+    screen: Tabs
+  }
+})
+
+class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View style={{flex: 1}}>
+        <Navigator />
       </View>
-    );
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
