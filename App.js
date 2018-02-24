@@ -14,7 +14,7 @@ import { FontAwesome } from '@expo/vector-icons'
 /**
  * Utils
  */
-import { white, darkGray } from './utils/constants'
+import { white, darkGray, baseSize } from './utils/constants'
 
 /**
  * Components
@@ -22,6 +22,7 @@ import { white, darkGray } from './utils/constants'
 import DeckList from './components/DeckList'
 import DeckForm from './components/DeckForm'
 import Quiz     from './components/Quiz'
+import Deck     from './components/Deck'
 
 const AppStatusBar = ({ backgroundColor, ...props }) => (
   <View style={{backgroundColor, height: Constants.statusBarHeight}}>
@@ -43,13 +44,6 @@ const Tabs = TabNavigator({
       tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus' size={24} color={tintColor} />
     }
-  },
-  Quiz: {
-    screen: Quiz,
-    navigationOptions: {
-      tabBarLabel: 'Quiz Me',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='question' size={24} color={tintColor} />
-    }
   }
 }, {
   navigationOptions: {
@@ -65,7 +59,37 @@ const Tabs = TabNavigator({
 
 const Navigator = StackNavigator({
   Home: {
-    screen: Tabs,
+    screen: Tabs
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Deck',
+      headerTitle: navigation.state.params.key,
+      headerStyle: {
+        backgroundColor: darkGray
+      },
+      headerTitleStyle: {
+        color: white,
+        fontSize: baseSize
+      },
+      headerTintColor: white
+    })
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Quiz',
+      headerTitle: navigation.state.params.key,
+      headerStyle: {
+        backgroundColor: darkGray
+      },
+      headerTitleStyle: {
+        color: white,
+        fontSize: baseSize
+      },
+      headerTintColor: white
+    })
   }
 })
 

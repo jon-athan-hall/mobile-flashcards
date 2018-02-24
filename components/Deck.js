@@ -29,15 +29,15 @@ class Deck extends Component {
 
     this.state = {
       ready: false,
-      title: 'Agricola',
+      title: null,
       cards: []
     }
   }
 
   componentDidMount() {
-    const { title } = this.state
+    const { key } = this.props.navigation.state.params
 
-    getDeck({ title })
+    getDeck({ key })
      .then(({ title, cards }) => this.setState({
        ready: true,
        title,
@@ -54,7 +54,7 @@ class Deck extends Component {
 
     return (
       <View>
-        <Deck title={title} size={cards.length} />
+        <DeckInfo title={title} size={cards.length} handlePress={() => {}} />
         <TouchableHighlight style={styles.addCardButton}>
           <Text>Add Card</Text>
         </TouchableHighlight>

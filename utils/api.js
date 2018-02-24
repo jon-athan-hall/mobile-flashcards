@@ -13,18 +13,18 @@ export const getDecks = () => (
     .then(formatFlashcardsResults)
 )
 
-export const getDeck = ({ title }) => (
+export const getDeck = ({ key }) => (
   AsyncStorage.getItem(MOBILE_FLASHCARDS_STORAGE_KEY)
     .then((results) => {
       const decks = JSON.parse(results)
-      return decks[title]
+      return decks[key]
     })
 )
 
-export const saveDeckTitle = ({ title }) => (
-  title
+export const saveDeckTitle = ({ key }) => (
+  key
 )
 
-export const addCardToDeck = ({ title, question, answer }) => (
-  title
+export const addCardToDeck = ({ key, question, answer }) => (
+  key
 )

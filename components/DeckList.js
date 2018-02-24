@@ -3,7 +3,6 @@
  */
 import React, { Component }  from 'react'
 import { View, Text }        from 'react-native'
-import { NavigationActions } from 'react-navigation'
 
 /**
  * Expo
@@ -38,11 +37,8 @@ class DeckList extends Component {
       .then((decks) => this.setState(() => ({ decks, ready: true })))
   }
 
-  toDeck = (title) => {
-    //this.props.navigation.dispatch(NavigationActions.back({
-    //  key: 'Deck'
-    //}))
-    console.log('title...', title)
+  toDeck = (key) => {
+    this.props.navigation.push('Deck', { key })
   }
 
   render() {
@@ -59,7 +55,7 @@ class DeckList extends Component {
           const { title, cards } = decks[deck]
 
           return (
-            <DeckInfo key={deck} title={title} size={cards.length} handlePress={this.toDeck}/>
+            <DeckInfo key={deck} deckKey={deck} title={title} size={cards.length} handlePress={this.toDeck}/>
           )
         })}
       </View>
