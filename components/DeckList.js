@@ -1,8 +1,9 @@
 /**
  * React Native
  */
-import React, { Component }       from 'react'
-import { View, Text } from 'react-native'
+import React, { Component }  from 'react'
+import { View, Text }        from 'react-native'
+import { NavigationActions } from 'react-navigation'
 
 /**
  * Expo
@@ -17,7 +18,7 @@ import { getDecks } from '../utils/api'
 /**
  * Components
  */
-import Deck from './Deck'
+import DeckInfo from './DeckInfo'
 
 /**
  * Class Component
@@ -37,6 +38,13 @@ class DeckList extends Component {
       .then((decks) => this.setState(() => ({ decks, ready: true })))
   }
 
+  toDeck = (title) => {
+    //this.props.navigation.dispatch(NavigationActions.back({
+    //  key: 'Deck'
+    //}))
+    console.log('title...', title)
+  }
+
   render() {
     const { ready, decks } = this.state
 
@@ -48,10 +56,10 @@ class DeckList extends Component {
     return (
       <View>
         {Object.keys(decks).map((deck) => {
-          const { title, questions } = decks[deck]
+          const { title, cards } = decks[deck]
 
           return (
-            <Deck key={deck} title={title} size={questions.length} />
+            <DeckInfo key={deck} title={title} size={cards.length} handlePress={this.toDeck}/>
           )
         })}
       </View>

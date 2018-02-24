@@ -7,25 +7,25 @@ export const MOBILE_FLASHCARDS_STORAGE_KEY = 'MobileFlashcards:flashcards'
 
 const setDummyData = () => {
   const dummyData  = {
-    React: {
-      title: 'React',
-      questions: [
+    Agricola: {
+      title: 'Agricola',
+      cards: [
         {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
+          question: 'How much food does the first player start with?',
+          answer: 'Zero.'
         },
         {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
+          question: 'What does the arrow mean on certain action spaces?',
+          answer: 'Resources added during the preparation phase are cumulative.'
         }
       ]
     },
     JavaScript: {
-      title: 'JavaScript',
-      questions: [
+      title: 'The Castles of Burgundy',
+      cards: [
         {
-          question: 'What is a closure?',
-          answer: 'The combination of a function and the lexical environment within which that function was declared.'
+          question: 'How many total knowledge tiles are there?',
+          answer: 'Twenty six.'
         }
       ]
     }
@@ -37,6 +37,7 @@ const setDummyData = () => {
 }
 
 export const formatFlashcardsResults = (results) => {
+  //AsyncStorage.removeItem(MOBILE_FLASHCARDS_STORAGE_KEY)
   return (
     results === null
       ? setDummyData()
