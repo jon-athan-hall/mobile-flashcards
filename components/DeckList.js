@@ -1,14 +1,15 @@
 /**
  * React Native
  */
-import React, { Component } from 'react'
-import { View, Text }       from 'react-native'
-import { AppLoading }       from 'expo'
+import React, { Component }       from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import { AppLoading }             from 'expo'
 
 /**
  * Utils
  */
 import { getDecks } from '../utils/api'
+import { baseSize, darkGray, phi } from '../utils/constants'
 
 /**
  * Class Component
@@ -36,14 +37,14 @@ class DeckList extends Component {
 
     // @TODO Try out ES6 from function?
     return (
-      <View style={{marginTop: 40}}>
-        <Text>DeckList</Text>
+      <View>
         {Object.keys(decks).map((deck) => {
           const { title, questions } = decks[deck]
 
           return (
-            <View key={deck}>
-              <Text>{title}</Text>
+            <View key={deck} style={styles.deck}>
+              <Text style={styles.deckTitle}>{title}</Text>
+              <Text>{questions.length} card{questions.length !== 1 ? 's' : ''}</Text>
             </View>
           )
         })}
@@ -51,5 +52,24 @@ class DeckList extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  deck: {
+    alignItems: 'center',
+    marginTop: baseSize,
+    marginLeft: baseSize,
+    marginBottom: baseSize,
+    marginRight: baseSize,
+    paddingTop: baseSize * 2,
+    paddingBottom: baseSize * 2,
+    borderRadius: baseSize / 4,
+    borderColor: darkGray,
+    borderWidth: 1
+  },
+  deckTitle: {
+    fontSize: baseSize * phi,
+    fontWeight: 'bold'
+  }
+})
 
 export default DeckList

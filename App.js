@@ -14,7 +14,7 @@ import { FontAwesome } from '@expo/vector-icons'
 /**
  * Utils
  */
-import { white, darkGray }              from './utils/colors'
+import { white, darkGray } from './utils/constants'
 
 /**
  * Components
@@ -65,7 +65,7 @@ const Tabs = TabNavigator({
 
 const Navigator = StackNavigator({
   Home: {
-    screen: Tabs
+    screen: Tabs,
   }
 })
 
