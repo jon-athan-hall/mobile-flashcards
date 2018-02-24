@@ -3,12 +3,16 @@
  */
 import React, { Component }       from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { AppLoading }             from 'expo'
+
+/**
+ * Expo
+ */
+import { AppLoading } from 'expo'
 
 /**
  * Utils
  */
-import { getDecks } from '../utils/api'
+import { getDecks }                from '../utils/api'
 import { baseSize, darkGray, phi } from '../utils/constants'
 
 /**
@@ -17,6 +21,7 @@ import { baseSize, darkGray, phi } from '../utils/constants'
 class DeckList extends Component {
   constructor(props, context) {
     super(props, context)
+
     this.state = {
       ready: false,
       decks: null

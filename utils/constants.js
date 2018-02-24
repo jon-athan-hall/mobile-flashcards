@@ -3,6 +3,7 @@
  */
 export const white = '#fff'
 export const darkGray = '#333'
+export const yellow = '#daa520'
 
 /**
  * Sizes
