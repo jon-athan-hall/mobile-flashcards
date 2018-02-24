@@ -15,6 +15,11 @@ import { AppLoading } from 'expo'
 import { getDeck }                         from '../utils/api'
 import { baseSize, darkGray, phi, yellow } from '../utils/constants'
 
+/**
+ * Components
+ */
+import Deck from './Deck'
+
 class Quiz extends Component {
   constructor(props, context) {
     super(props, context)
@@ -46,10 +51,7 @@ class Quiz extends Component {
 
     return (
       <View>
-        <View style={styles.deck}>
-          <Text style={styles.deckTitle}>{title}</Text>
-          <Text>{questions.length} card{questions.length !== 1 ? 's' : ''}</Text>
-        </View>
+        <Deck title={title} size={questions.length} />
         <TouchableOpacity style={styles.addCardButton}>
           <Text>Add Card</Text>
         </TouchableOpacity>
@@ -62,22 +64,6 @@ class Quiz extends Component {
 }
 
 const styles = StyleSheet.create({
-  deck: {
-    alignItems: 'center',
-    marginTop: baseSize,
-    marginLeft: baseSize,
-    marginBottom: baseSize,
-    marginRight: baseSize,
-    paddingTop: baseSize * 2,
-    paddingBottom: baseSize * 2,
-    borderRadius: baseSize / 4,
-    borderColor: darkGray,
-    borderWidth: 1
-  },
-  deckTitle: {
-    fontSize: baseSize * phi,
-    fontWeight: 'bold'
-  },
   addCardButton: {
     backgroundColor: yellow
   },
