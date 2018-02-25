@@ -25,21 +25,21 @@ class DeckForm extends Component {
     super(props, context)
 
     this.state = {
-      key: null,
+      deckKey: null,
       title: null
     }
   }
 
   handleChange = (title) => {
-    const key = title.replace(/\s/g, '')
+    const deckKey = title.replace(/[^A-Za-z0-9]/ig, '')
 
-    this.setState({ key, title })
+    this.setState({ deckKey, title })
   }
 
   handleSubmit = () => {
-    const { key, title } = this.state
+    const { deckKey, title } = this.state
 
-    saveDeckTitle({ key, title })
+    saveDeckTitle({ deckKey, title })
     this.props.navigation.navigate('Home')
   }
 

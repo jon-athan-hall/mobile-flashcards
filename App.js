@@ -65,7 +65,7 @@ const Navigator = StackNavigator({
     screen: Deck,
     navigationOptions: ({ navigation }) => ({
       title: 'Deck',
-      headerTitle: navigation.state.params.key,
+      headerTitle: navigation.state.params.deckKey,
       headerStyle: {
         backgroundColor: darkGray
       },
@@ -80,7 +80,7 @@ const Navigator = StackNavigator({
     screen: Quiz,
     navigationOptions: ({ navigation }) => ({
       title: 'Quiz',
-      headerTitle: navigation.state.params.key,
+      headerTitle: navigation.state.params.deckKey,
       headerStyle: {
         backgroundColor: darkGray
       },

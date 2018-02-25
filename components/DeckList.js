@@ -38,8 +38,8 @@ class DeckList extends Component {
       .then((decks) => this.setState(() => ({ decks, ready: true })))
   }
 
-  toDeck = (key) => {
-    this.props.navigation.push('Deck', { key })
+  toDeck = (deckKey) => {
+    this.props.navigation.push('Deck', { deckKey })
   }
 
   render() {
@@ -52,11 +52,11 @@ class DeckList extends Component {
     // @TODO Try out ES6 from function?
     return (
       <View style={styles.deckList}>
-        {Object.keys(decks).map((deck) => {
-          const { title, cards } = decks[deck]
+        {Object.keys(decks).map((deckKey) => {
+          const { title, cards } = decks[deckKey]
 
           return (
-            <DeckInfo key={deck} deckKey={deck} title={title} size={cards.length} handlePress={this.toDeck}/>
+            <DeckInfo key={deckKey} deckKey={deckKey} title={title} size={cards.length} handlePress={this.toDeck}/>
           )
         })}
       </View>

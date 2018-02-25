@@ -21,7 +21,7 @@ const DeckInfo = ({ deckKey, title, size, handlePress }) => {
       </View>
     )
   }
-     
+
   return (
     <TouchableHighlight style={styles.deckInfo} onPress={() => handlePress(deckKey)}>
       <View>

@@ -36,9 +36,9 @@ class Deck extends Component {
   }
 
   componentDidMount() {
-    const { key } = this.props.navigation.state.params
+    const { deckKey } = this.props.navigation.state.params
 
-    getDeck({ key })
+    getDeck({ deckKey })
      .then(({ title, cards }) => this.setState({
        ready: true,
        title,
