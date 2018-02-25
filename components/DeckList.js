@@ -31,11 +31,17 @@ class DeckList extends Component {
       ready: false,
       decks: null
     }
+
+    /**
+     * This is a simpler verson of a similar subscription in the Deck component.
+     */
+    this.willFocusSubscription = this.props.navigation.addListener(
+      'willFocus', () => { getDecks().then((decks) => this.setState({ ready: true, decks})) }
+    )
   }
 
-  componentDidMount() {
-    getDecks()
-      .then((decks) => this.setState(() => ({ decks, ready: true })))
+  componentWillUnmount() {
+    this.willFocusSubscription.remove()
   }
 
   toDeck = (deckKey) => {

@@ -34,16 +34,14 @@ class Deck extends Component {
       title: null,
       cards: []
     }
-  }
 
-  componentDidMount() {
     /**
      * This crazy block of code helps trigger a state update
      * after the component comes into focus through navigation.
      * There was a bug with the StackNavigator pop function not
      * not updating this component.
      */
-    this.props.navigation.addListener(
+    this.willFocusSubscription = this.props.navigation.addListener(
       'willFocus',
       (payload) => {
         const { deckKey } = payload.state.params
@@ -56,6 +54,10 @@ class Deck extends Component {
           }))
       }
     )
+  }
+
+  componentWillUnmount() {
+    this.willFocusSubscription.remove()
   }
 
   toAddCard = () => {
