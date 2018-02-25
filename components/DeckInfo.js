@@ -7,7 +7,7 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 /**
  * Utils
  */
-import { baseSize, darkGray, phi } from '../utils/constants'
+import { baseSize, darkGray, white, phi } from '../utils/constants'
 
 /**
  * Functional Component
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     marginTop: baseSize / 2,
     marginBottom: baseSize / 2,
     padding: baseSize,
+    backgroundColor: white,
     borderRadius: baseSize / 4,
     borderColor: darkGray,
     borderWidth: 1

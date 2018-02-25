@@ -21,8 +21,13 @@ export const getDeck = ({ key }) => (
     })
 )
 
-export const saveDeckTitle = ({ key }) => (
-  key
+export const saveDeckTitle = ({ key, title }) => (
+  AsyncStorage.mergeItem(MOBILE_FLASHCARDS_STORAGE_KEY, JSON.stringify({
+    [key]: {
+      title,
+      cards: []
+    }
+  }))
 )
 
 export const addCardToDeck = ({ key, question, answer }) => (
