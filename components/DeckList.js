@@ -1,8 +1,8 @@
 /**
  * React Native
  */
-import React, { Component }  from 'react'
-import { View, Text }        from 'react-native'
+import React, { Component }       from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
 /**
  * Expo
@@ -13,6 +13,7 @@ import { AppLoading } from 'expo'
  * Utils
  */
 import { getDecks } from '../utils/api'
+import { baseSize } from '../utils/constants'
 
 /**
  * Components
@@ -50,7 +51,7 @@ class DeckList extends Component {
 
     // @TODO Try out ES6 from function?
     return (
-      <View>
+      <View style={styles.deckList}>
         {Object.keys(decks).map((deck) => {
           const { title, cards } = decks[deck]
 
@@ -62,5 +63,13 @@ class DeckList extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  deckList: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: baseSize
+  }
+})
 
 export default DeckList
