@@ -30,21 +30,32 @@ class Deck extends Component {
 
     this.state = {
       ready: false,
-      deckKey: this.props.navigation.state.params.deckKey,
+      deckKey: null,
       title: null,
       cards: []
     }
   }
 
   componentDidMount() {
-    const { deckKey } = this.state
-
-    getDeck({ deckKey })
-     .then(({ title, cards }) => this.setState({
-       ready: true,
-       title,
-       cards
-     }))
+    /**
+     * This crazy block of code helps trigger a state update
+     * after the component comes into focus through navigation.
+     * There was a bug with the StackNavigator pop function not
+     * not updating this component.
+     */
+    this.props.navigation.addListener(
+      'willFocus',
+      (payload) => {
+        const { deckKey } = payload.state.params
+        getDeck({ deckKey })
+          .then(({ title, cards }) => this.setState({
+            ready: true,
+            deckKey,
+            title,
+            cards
+          }))
+      }
+    )
   }
 
   toAddCard = () => {

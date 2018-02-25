@@ -43,7 +43,7 @@ class CardForm extends Component {
     const { deckKey, question, answer } = this.state
 
     addCardToDeck({ deckKey, question, answer })
-    this.props.navigation.pop()
+      .then(() => this.props.navigation.pop())
   }
 
   render() {
