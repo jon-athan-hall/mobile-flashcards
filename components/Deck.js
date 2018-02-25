@@ -30,13 +30,14 @@ class Deck extends Component {
 
     this.state = {
       ready: false,
+      deckKey: this.props.navigation.state.params.deckKey,
       title: null,
       cards: []
     }
   }
 
   componentDidMount() {
-    const { deckKey } = this.props.navigation.state.params
+    const { deckKey } = this.state
 
     getDeck({ deckKey })
      .then(({ title, cards }) => this.setState({
@@ -46,8 +47,9 @@ class Deck extends Component {
      }))
   }
 
-  addCard = () => {
-    console.log('Add Card')
+  toAddCard = () => {
+    const { deckKey } = this.state
+    this.props.navigation.push('CardForm', { deckKey })
   }
 
   startQuiz = () => {
@@ -64,7 +66,7 @@ class Deck extends Component {
     return (
       <View style={styles.deck}>
         <DeckInfo title={title} size={cards.length} />
-        <SubmitButton text='Add Card' onPress={this.addCard} />
+        <SubmitButton text='Add Card' onPress={this.toAddCard} />
         <SubmitButton text='Start Quiz' onPress={this.startQuiz} />
       </View>
     )

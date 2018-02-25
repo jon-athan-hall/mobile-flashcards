@@ -37,7 +37,7 @@ const setDummyData = () => {
 }
 
 export const formatFlashcardsResults = (results) => {
-  //AsyncStorage.removeItem(MOBILE_FLASHCARDS_STORAGE_KEY)
+  AsyncStorage.removeItem(MOBILE_FLASHCARDS_STORAGE_KEY)
   return (
     results === null
       ? setDummyData()

@@ -30,6 +30,11 @@ export const saveDeckTitle = ({ deckKey, title }) => (
   }))
 )
 
-export const addCardToDeck = ({ key, question, answer }) => (
-  key
+export const addCardToDeck = ({ deckKey, question, answer }) => (
+  AsyncStorage.getItem(MOBILE_FLASHCARDS_STORAGE_KEY)
+    .then((results) => {
+      const decks = JSON.parse(results)
+      decks[deckKey].cards.push({ question, answer })
+      AsyncStorage.setItem(MOBILE_FLASHCARDS_STORAGE_KEY, JSON.stringify(decks))
+    })
 )

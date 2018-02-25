@@ -1,7 +1,7 @@
 /**
  * React Native
  */
-import React, { Component } from 'react'
+import React, { Component }  from 'react'
 import {
   View,
   TextInput,
@@ -25,6 +25,7 @@ class CardForm extends Component {
     super(props, context)
 
     this.state = {
+      deckKey: this.props.navigation.state.params.deckKey,
       question: null,
       answer: null
     }
@@ -39,15 +40,10 @@ class CardForm extends Component {
   }
 
   handleSubmit = () => {
-    //const { deckKey } = this.props
-    const { question, answer } = this.state
+    const { deckKey, question, answer } = this.state
 
-    //console.log(deckKey)
-    console.log(question)
-    console.log(answer)
-
-    //addCardToDeck({ deckKey, question, answer })
-    //this.props.navigation.navigate('Deck', { deckKey })
+    addCardToDeck({ deckKey, question, answer })
+    this.props.navigation.pop()
   }
 
   render() {
@@ -70,6 +66,8 @@ const styles = StyleSheet.create({
     padding: baseSize
   },
   cardFormTextInput: {
+    marginTop: baseSize,
+    marginBottom: baseSize,
     padding: baseSize,
     backgroundColor: white,
     fontSize: baseSize
