@@ -2,7 +2,7 @@
  * React Native
  */
 import React, { Component }       from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { ScrollView, Text, StyleSheet } from 'react-native'
 
 /**
  * Expo
@@ -57,7 +57,7 @@ class DeckList extends Component {
 
     // @TODO Try out ES6 from function?
     return (
-      <View style={styles.deckList}>
+      <ScrollView contentContainerStyle={styles.deckList}> 
         {Object.keys(decks).map((deckKey) => {
           const { title, cards } = decks[deckKey]
 
@@ -65,7 +65,7 @@ class DeckList extends Component {
             <DeckInfo key={deckKey} deckKey={deckKey} title={title} size={cards.length} handlePress={this.toDeck}/>
           )
         })}
-      </View>
+      </ScrollView>
     )
   }
 }
