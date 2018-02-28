@@ -14,6 +14,10 @@ import { AppLoading } from 'expo'
  */
 import { getDeck }               from '../utils/api'
 import { baseSize, phi, yellow } from '../utils/constants'
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from '../utils/notifications'
 
 /**
  * Components
@@ -33,7 +37,8 @@ class Quiz extends Component {
       cards: [],
       currentNumber: 1,
       showQuestion: true,
-      numberCorrect: 0
+      numberCorrect: 0,
+      showResult: false
     }
   }
 
@@ -54,28 +59,33 @@ class Quiz extends Component {
     }))
   }
 
-  registerCorrect = () => {
-    console.log('correct!')
-    this.setState((prevState) => ({
-      currentNumber: prevState.currentNumber + 1,
-      showQuestion: true,
-      numberCorrect: prevState.numberCorrect + 1
-    }))
-  }
+  registerAnswer = (correct) => {
+    this.setState((prevState) => {
+      const currentNumber = prevState.currentNumber + 1
+      const showQuestion = true
+      const numberCorrect = correct ? prevState.numberCorrect + 1 : prevState.numberCorrect
+      let showResult = false
 
-  registerIncorrect = () => {
-    console.log('incorrect!')
-    this.setState((prevState) => ({
-      currentNumber: prevState.currentNumber + 1,
-      showQuestion: true
-    }))
+      if (currentNumber > this.state.cards.length) {
+        showResult = true
+        clearLocalNotification().then(setLocalNotification)
+      }
+
+      return {
+        currentNumber,
+        showQuestion,
+        numberCorrect,
+        showResult
+      }
+    })
   }
 
   restartQuiz = () => {
     this.setState({
       currentNumber: 1,
       showQuestion: true,
-      numberCorrect: 0
+      numberCorrect: 0,
+      showResult: false
     })
   }
 
@@ -85,13 +95,13 @@ class Quiz extends Component {
   }
 
   render() {
-    const { ready, cards, currentNumber, showQuestion, numberCorrect } = this.state
+    const { ready, cards, currentNumber, showQuestion, numberCorrect, showResult } = this.state
 
     if (ready === false) {
       return <AppLoading />
     }
 
-    if (currentNumber > cards.length) {
+    if (showResult) {
       return (
         <View style={styles.result}>
           <Text style={styles.resultScore}>{(numberCorrect / cards.length * 100).toFixed(2)}%</Text>
@@ -117,8 +127,8 @@ class Quiz extends Component {
             </View>
         }
         <View>
-          <SubmitButton text='Correct' onPress={this.registerCorrect} />
-          <SubmitButton text='Incorrect' onPress={this.registerIncorrect} />
+          <SubmitButton text='Correct' onPress={() => this.registerAnswer(true)} />
+          <SubmitButton text='Incorrect' onPress={() => this.registerAnswer(false)} />
         </View>
       </View>
     )

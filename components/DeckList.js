@@ -73,7 +73,6 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   deckList: {
     flex: 1,
-    justifyContent: 'center',
     padding: baseSize
   }
 })

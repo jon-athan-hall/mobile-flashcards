@@ -12,7 +12,7 @@ const NOTIFICATION_KEY = 'MobileFlashcards:notifications'
 
 export const clearLocalNotification = () => (
   AsyncStorage.removeItem(NOTIFICATION_KEY)
-    .then(notifications.cancelAllScheduledNotificationsAsync)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
 )
 
 const createLocalNotification = () => ({
