@@ -15,6 +15,7 @@ import { FontAwesome } from '@expo/vector-icons'
  * Utils
  */
 import { white, darkGray, baseSize } from './utils/constants'
+import { setLocalNotification }      from './utils/notifications'
 
 /**
  * Components
@@ -112,6 +113,10 @@ const Navigator = StackNavigator({
  * Class Component
  */
 class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>

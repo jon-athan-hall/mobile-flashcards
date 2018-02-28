@@ -40,7 +40,7 @@ class DeckForm extends Component {
     const { deckKey, title } = this.state
 
     saveDeckTitle({ deckKey, title })
-    this.props.navigation.navigate('Home')
+    this.props.navigation.navigate('Deck', { deckKey })
   }
 
   render() {
