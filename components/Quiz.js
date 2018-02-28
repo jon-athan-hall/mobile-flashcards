@@ -12,8 +12,8 @@ import { AppLoading } from 'expo'
 /**
  * Utils
  */
-import { getDeck }  from '../utils/api'
-import { baseSize } from '../utils/constants'
+import { getDeck }               from '../utils/api'
+import { baseSize, phi, yellow } from '../utils/constants'
 
 /**
  * Components
@@ -93,8 +93,8 @@ class Quiz extends Component {
 
     if (currentNumber > cards.length) {
       return (
-        <View style={styles.quiz}>
-          <Text>{(numberCorrect / cards.length * 100).toFixed(2)}%</Text>
+        <View style={styles.result}>
+          <Text style={styles.resultScore}>{(numberCorrect / cards.length * 100).toFixed(2)}%</Text>
           <SubmitButton text='Restart Quiz' onPress={this.restartQuiz} />
           <SubmitButton text='Back to Deck' onPress={this.toDeck} />
         </View>
@@ -103,17 +103,17 @@ class Quiz extends Component {
 
     return (
       <View style={styles.quiz}>
-        <View>
-          <Text>#{currentNumber} out of {cards.length}</Text>
+        <View style={styles.quizCount}>
+          <Text style={styles.quizCountValue}>#{currentNumber} out of {cards.length}</Text>
         </View>
         {showQuestion
-          ? <View>
-              <Text>{cards[currentNumber - 1].question}</Text>
-              <Button title='Reveal Answer' onPress={this.toggleQuestion} />
+          ? <View style={styles.quizCard}>
+              <Text style={styles.quizCardText}>{cards[currentNumber - 1].question}</Text>
+              <Button title='Reveal Answer' color={yellow} onPress={this.toggleQuestion} />
             </View>
-          : <View>
-              <Text>{cards[currentNumber - 1].answer}</Text>
-              <Button title='Show Question' onPress={this.toggleQuestion} />
+          : <View style={styles.quizCard}>
+              <Text style={styles.quizCardText}>{cards[currentNumber - 1].answer}</Text>
+              <Button title='Show Question' color={yellow} onPress={this.toggleQuestion} />
             </View>
         }
         <View>
@@ -128,7 +128,36 @@ class Quiz extends Component {
 const styles = StyleSheet.create({
   quiz: {
     flex: 1,
+    justifyContent: 'space-between',
     padding: baseSize
+  },
+  quizCount: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  quizCountValue: {
+    fontWeight: 'bold'
+  },
+  quizCard: {
+    flex: 1,
+    justifyContent: 'flex-start'
+  },
+  quizCardText: {
+    marginBottom: baseSize,
+    fontSize: baseSize * phi,
+    textAlign: 'center'
+  },
+  result: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: baseSize
+  },
+  resultScore: {
+    marginBottom: baseSize * phi,
+    fontSize: baseSize * phi * phi,
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 })
 
