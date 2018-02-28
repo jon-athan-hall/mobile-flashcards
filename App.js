@@ -21,9 +21,9 @@ import { white, darkGray, baseSize } from './utils/constants'
  */
 import DeckList from './components/DeckList'
 import DeckForm from './components/DeckForm'
-import Quiz     from './components/Quiz'
 import Deck     from './components/Deck'
 import CardForm from './components/CardForm'
+import Quiz     from './components/Quiz'
 
 const AppStatusBar = ({ backgroundColor, ...props }) => (
   <View style={{backgroundColor, height: Constants.statusBarHeight}}>
@@ -95,7 +95,7 @@ const Navigator = StackNavigator({
     screen: Quiz,
     navigationOptions: ({ navigation }) => ({
       title: 'Quiz',
-      headerTitle: navigation.state.params.deckKey,
+      headerTitle: navigation.state.params.deckKey + ' Quiz',
       headerStyle: {
         backgroundColor: darkGray
       },

@@ -65,8 +65,9 @@ class Deck extends Component {
     this.props.navigation.push('CardForm', { deckKey })
   }
 
-  startQuiz = () => {
-    console.log('Start Quiz')
+  toStartQuiz = () => {
+    const { deckKey } = this.state
+    this.props.navigation.push('Quiz', { deckKey })
   }
 
   render() {
@@ -80,7 +81,7 @@ class Deck extends Component {
       <View style={styles.deck}>
         <DeckInfo title={title} size={cards.length} />
         <SubmitButton text='Add Card' onPress={this.toAddCard} />
-        <SubmitButton text='Start Quiz' onPress={this.startQuiz} />
+        <SubmitButton text='Start Quiz' onPress={this.toStartQuiz} />
       </View>
     )
   }
@@ -89,10 +90,7 @@ class Deck extends Component {
 const styles = StyleSheet.create({
   deck: {
     flex: 1,
-    paddingTop: baseSize,
-    paddingRight: baseSize,
-    paddingBottom: baseSize,
-    paddingLeft: baseSize
+    padding: baseSize
   }
 })
 
