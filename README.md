@@ -6,7 +6,7 @@
 ## Front-end
 * Grab the source code with `git clone https://github.com/jon-athan-hall/mobile-flashcards.git`
 * Move into the project directory with `cd mobile-flashcards`
-* Install the system reauirements with `npm install`
+* Install the system requirements with `npm install`
 * Fire up the front-end with `npm start`
 * Either scan the QR code with the Expo mobile app, or hit `i` to load in Simulator
 
