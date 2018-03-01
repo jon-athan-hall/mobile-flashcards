@@ -1,5 +1,7 @@
 # Mobile Flashcards Project
 
+Developed and tested with OS X Simulator and iOS Expo app. 
+
 ## Back-end
 * There isn't one!
 
